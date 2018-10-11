@@ -1,0 +1,22 @@
+$bg-color: #47a8bd;
+$box-color: #1e3888;
+
+body {
+  background: $bg-color;
+}
+
+.container-box {
+  display: flex;
+  flex-wrap: wrap;
+  width: 600px;
+  height: 600px;
+  background: $box-color;
+}
+
+.inner-box {
+  border: 1px solid black;
+  padding: 0px;
+  margin: 0px;
+  width: 150px;
+  height: 150px;
+}
