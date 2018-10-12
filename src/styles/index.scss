@@ -1,26 +1,28 @@
 $bg-color: #47a8bd;
 $box-color: #1e3888;
 
-#root {
+body {
   background: $bg-color;
 }
 
 .grid {
-  border: 1px solid black;
+  padding: 10px;
   margin: auto;
-  width: 400px;
+  width: 416px;
   height: 400px;
 }
 
 .row {
   display: flex;
-  border: 1px solid black;
+  margin: 4px 0px;
   width: 100%;
-  height: 98px;
+  height: 100px;
 }
 
 .tile {
   border: 1px solid black;
+  border-radius: 5px;
+  margin: 1px;
   width: 25%;
-  height: 98px;
+  height: 100px;
 }
