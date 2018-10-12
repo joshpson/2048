@@ -13,6 +13,11 @@ export default class Tile {
     return Math.random() < 0.9 ? 2 : 4;
   }
 
+  updateClass(className) {
+    this.grab().className = className;
+    this.className = className;
+  }
+
   grab() {
     return document.querySelector(`.${this.className}`);
   }

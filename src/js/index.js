@@ -8,7 +8,9 @@ function root() {
 
 function addArrowListeners(grid) {
   document.addEventListener("keydown", e => {
-    grid.transform(e.keyCode);
+    if (e.keyCode >= 37 && e.keyCode <= 40) {
+      grid.transform(e.keyCode);
+    }
   });
 }
 
