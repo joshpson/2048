@@ -1,6 +1,12 @@
 export default class Tile {
   constructor(obj) {
     this.value = this.startingNumber();
+    this.className = this.buildClassName(obj.cell);
+  }
+
+  buildClassName(cell) {
+    let row = Math.floor(cell / 4) + 1;
+    return `tile-${row}-${(cell % 4) + 1}`;
   }
 
   startingNumber() {
@@ -13,7 +19,7 @@ export default class Tile {
     value.innerText = this.value;
     value.className = "value";
     div.appendChild(value);
-    div.className = "tile";
+    div.className = this.className;
     return div;
   }
 }

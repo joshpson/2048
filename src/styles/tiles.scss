@@ -1,10 +1,45 @@
-.tile {
+$bg-color: #cae2ee;
+$box-color: #bfc6c5;
+$color-1: #043844;
+$color-2: #fffbcf;
+$color-3: #e63946;
+
+%tile {
+  border-radius: 5px;
   width: 100px;
   height: 100px;
+  margin: 8px 4px;
+  background: $color-1;
+}
+
+.tile-1-1 {
+  @extend %tile;
+  transform: translate(0px, 0px);
+}
+
+.tile-1-2 {
+  @extend %tile;
+  transform: translate(108px, 0px);
+}
+
+.tile-1-3 {
+  @extend %tile;
+  transform: translate(216px, 0px);
+}
+
+.tile-1-4 {
+  @extend %tile;
+  transform: translate(324px, 0px);
+}
+
+.tile-2-1 {
+  @extend %tile;
+  transform: translate(0px, 108px);
 }
 
 .value {
-  margin: auto;
-  width: 100%;
-  height: 100%;
+  text-align: center;
+  color: white;
+  padding: 25px;
+  font-size: 35px;
 }

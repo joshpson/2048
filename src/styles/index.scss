@@ -1,3 +1,5 @@
+@import "tiles";
+
 $bg-color: #cae2ee;
 $box-color: #bfc6c5;
 $color-1: #043844;
@@ -24,7 +26,6 @@ body {
 
 .grid {
   @extend %container;
-  border: 1px solid green;
   z-index: 2;
 }
 
@@ -42,26 +43,10 @@ body {
 .background-cell {
   border: 1px;
   border-radius: 5px;
-  width: 25%;
+  width: 100px;
   height: 100px;
   margin: 0px 4px;
   box-shadow: 4px 3px 0px 0px rgba(0, 0, 0, 0.24) inset;
   -webkit-box-shadow: 4px 3px 0px 0px rgba(0, 0, 0, 0.24) inset;
   -moz-box-shadow: 4px 3px 0px 0px rgba(0, 0, 0, 0.24) inset;
-}
-
-.tile {
-  border-radius: 5px;
-  width: 25%;
-  height: 100px;
-  margin: 8px 0px;
-  background: $color-1;
-  transform: translate(220px, 110px);
-}
-
-.value {
-  text-align: center;
-  color: white;
-  padding: 25px;
-  font-size: 30px;
 }
