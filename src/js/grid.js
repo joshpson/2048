@@ -1,32 +1,22 @@
+import Tile from "./tile.js";
+
 export default class Grid {
   constructor(obj) {
-    this.size = obj.size;
+    this.tiles = [];
+    this.createTile();
   }
 
-  //Return one tile of the grid
-  returnGridTile() {
-    let tile = document.createElement("div");
-    tile.className = "tile-empty";
-    return tile;
+  createTile() {
+    let tile = new Tile();
+    this.tiles.push(tile);
   }
 
-  //Return on row of the grid
-  returnGridRow() {
-    let row = document.createElement("div");
-    row.className = "row";
-    for (let i = 0; i < this.size; i += 1) {
-      row.appendChild(this.returnGridTile());
-    }
-    return row;
-  }
-
-  //Return entire grid for appending on DOM
-  returnGrid() {
-    let grid = document.createElement("div");
-    grid.className = "grid-4";
-    for (let i = 0; i < this.size; i += 1) {
-      grid.appendChild(this.returnGridRow());
-    }
-    return grid;
+  returnContainer() {
+    let div = document.createElement("div");
+    div.className = "grid";
+    this.tiles.forEach(tile => {
+      div.appendChild(tile.createDiv());
+    });
+    return div;
   }
 }

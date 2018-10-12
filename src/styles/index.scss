@@ -8,50 +8,60 @@ body {
   background: $bg-color;
 }
 
-%grid {
+%container {
   padding: 5px 8px;
-  margin: auto;
-  background: $box-color;
   border-radius: 5px;
-}
-
-.grid-4 {
-  @extend %grid;
   width: 440px;
   height: 440px;
+  position: absolute;
 }
 
-.grid-5 {
-  @extend %grid;
-  width: 520px;
-  height: 520px;
+.background {
+  @extend %container;
+  background: $box-color;
+  z-index: 1;
 }
 
-.row {
+.grid {
+  @extend %container;
+  border: 1px solid green;
+  z-index: 2;
+}
+
+%row {
   display: flex;
   margin: 8px 0px;
   width: 100%;
   height: 100px;
 }
 
-%tile {
-  border: 1px;
-  border-radius: 5px;
-  margin: 0px 4px;
-  width: 25%;
-  height: 100px;
+.background-row {
+  @extend %row;
 }
 
-.tile-empty {
-  @extend %tile;
+.background-cell {
+  border: 1px;
+  border-radius: 5px;
+  width: 25%;
+  height: 100px;
+  margin: 0px 4px;
   box-shadow: 4px 3px 0px 0px rgba(0, 0, 0, 0.24) inset;
   -webkit-box-shadow: 4px 3px 0px 0px rgba(0, 0, 0, 0.24) inset;
   -moz-box-shadow: 4px 3px 0px 0px rgba(0, 0, 0, 0.24) inset;
 }
 
-.tile-full {
-  @extend %tile;
-  box-shadow: 4px 3px 0px 0px rgba(0, 0, 0, 0.24);
-  -webkit-box-shadow: 4px 3px 0px 0px rgba(0, 0, 0, 0.24);
-  -moz-box-shadow: 4px 3px 0px 0px rgba(0, 0, 0, 0.24);
+.tile {
+  border-radius: 5px;
+  width: 25%;
+  height: 100px;
+  margin: 8px 0px;
+  background: $color-1;
+  transform: translate(220px, 110px);
+}
+
+.value {
+  text-align: center;
+  color: white;
+  padding: 25px;
+  font-size: 30px;
 }
