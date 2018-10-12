@@ -13,6 +13,10 @@ export default class Tile {
     return Math.random() < 0.9 ? 2 : 4;
   }
 
+  grab() {
+    return document.querySelector(`.${this.className}`);
+  }
+
   createDiv() {
     let div = document.createElement("div");
     let value = document.createElement("div");
