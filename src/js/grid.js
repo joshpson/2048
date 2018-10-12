@@ -11,17 +11,32 @@ export default class Grid {
   transform(keyCode) {
     switch (keyCode) {
       case 37: //left
+        this.tiles.forEach(tile => {
+          let row = tile.className.charAt(5);
+          tile.grab().className = `tile-${row}-1`;
+          tile.className = `tile-${row}-1`;
+        });
         break;
       case 38: //up
+        this.tiles.forEach(tile => {
+          let col = tile.className.charAt(7);
+          tile.grab().className = `tile-1-${col}`;
+          tile.className = `tile-1-${col}`;
+        });
         break;
       case 39: //right
         this.tiles.forEach(tile => {
-          let row = tile.grab().className.charAt(5);
-          let col = tile.grab().className.charAt(7);
+          let row = tile.className.charAt(5);
           tile.grab().className = `tile-${row}-4`;
+          tile.className = `tile-${row}-4`;
         });
         break;
       case 40: //down
+        this.tiles.forEach(tile => {
+          let col = tile.className.charAt(7);
+          tile.grab().className = `tile-4-${col}`;
+          tile.className = `tile-4-${col}`;
+        });
         break;
       default:
         break;
