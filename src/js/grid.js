@@ -6,7 +6,7 @@ export default class Grid {
   //Return one tile of the grid
   returnGridTile() {
     let tile = document.createElement("div");
-    tile.className = "tile";
+    tile.className = "tile-empty";
     return tile;
   }
 
@@ -23,7 +23,7 @@ export default class Grid {
   //Return entire grid for appending on DOM
   returnGrid() {
     let grid = document.createElement("div");
-    grid.className = "grid";
+    grid.className = "grid-4";
     for (let i = 0; i < this.size; i += 1) {
       grid.appendChild(this.returnGridRow());
     }
