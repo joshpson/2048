@@ -5,12 +5,18 @@ export default class Grid {
     this.tiles = [];
     this.positions = {};
     this.createTile();
+    this.createTile();
   }
 
   createTile() {
     let cell = Math.floor(Math.random() * 16 + 1);
-    let tile = new Tile({ cell: cell });
-    this.tiles.push(tile);
+    if (this.positions[cell]) {
+      this.createTile();
+    } else {
+      let tile = new Tile({ cell: cell });
+      this.positions[cell] = tile;
+      this.tiles.push(tile);
+    }
   }
 
   returnContainer() {

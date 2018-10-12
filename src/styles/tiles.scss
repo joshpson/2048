@@ -10,6 +10,7 @@ $color-3: #e63946;
   height: 100px;
   margin: 8px 4px;
   background: $color-1;
+  position: absolute;
 }
 
 .tile-1-1 {
@@ -35,6 +36,61 @@ $color-3: #e63946;
 .tile-2-1 {
   @extend %tile;
   transform: translate(0px, 108px);
+}
+
+.tile-2-2 {
+  @extend %tile;
+  transform: translate(108px, 108px);
+}
+
+.tile-2-3 {
+  @extend %tile;
+  transform: translate(216px, 108px);
+}
+
+.tile-2-4 {
+  @extend %tile;
+  transform: translate(324px, 108px);
+}
+
+.tile-3-1 {
+  @extend %tile;
+  transform: translate(0px, 216px);
+}
+
+.tile-3-2 {
+  @extend %tile;
+  transform: translate(108px, 216px);
+}
+
+.tile-3-3 {
+  @extend %tile;
+  transform: translate(216px, 216px);
+}
+
+.tile-3-4 {
+  @extend %tile;
+  transform: translate(324px, 216px);
+}
+
+.tile-4-1 {
+  @extend %tile;
+  transform: translate(0px, 324px);
+}
+
+.tile-4-2 {
+  @extend %tile;
+  transform: translate(108px, 324px);
+}
+
+.tile-4-3 {
+  @extend %tile;
+  transform: translate(216px, 324px);
+}
+
+.tile-4-4 {
+  @extend %tile;
+  transform: translate(324px, 324px);
 }
 
 .value {

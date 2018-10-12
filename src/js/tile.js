@@ -5,7 +5,7 @@ export default class Tile {
   }
 
   buildClassName(cell) {
-    let row = Math.floor(cell / 4) + 1;
+    let row = Math.ceil(cell / 4);
     return `tile-${row}-${(cell % 4) + 1}`;
   }
 
