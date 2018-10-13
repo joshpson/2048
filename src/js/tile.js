@@ -1,12 +1,7 @@
 export default class Tile {
   constructor(obj) {
     this.value = this.startingNumber();
-    this.className = this.buildClassName(obj.cell);
-  }
-
-  buildClassName(cell) {
-    let row = Math.ceil(cell / 4);
-    return `tile-${row}-${(cell % 4) + 1}`;
+    this.className = obj.className;
   }
 
   startingNumber() {
