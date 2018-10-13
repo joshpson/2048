@@ -3,52 +3,22 @@ import Tile from "./tile.js";
 export default class Grid {
   constructor(obj) {
     this.tiles = [];
-    this.positions = {
-      1: {
-        1: false,
-        2: false,
-        3: false,
-        4: false
-      },
-      2: {
-        1: false,
-        2: false,
-        3: false,
-        4: false
-      },
-      3: {
-        1: false,
-        2: false,
-        3: false,
-        4: false
-      },
-      4: {
-        1: false,
-        2: false,
-        3: false,
-        4: false
-      }
-    };
+    this.cells = {};
     this.createTile();
     this.createTile();
   }
 
   transform(keyCode) {
     this.tiles.forEach(tile => {
-      let row = tile.className.charAt(5);
-      let col = tile.className.charAt(7);
       switch (keyCode) {
         case 37: //left
-          tile.updateClass(`tile-${row}-1`);
+          this.updateRow();
           break;
         case 38: //up
-          tile.updateClass(`tile-1-${col}`);
           break;
         case 39: //right
-          tile.updateClass(`tile-${row}-4`);
           break;
         case 40: //down
-          tile.updateClass(`tile-4-${col}`);
           break;
         default:
           break;
@@ -56,16 +26,42 @@ export default class Grid {
     });
   }
 
+  updateRow() {
+    for (let i = 2; i <= 4; i += 1) {
+      for (let j = i; j > 1; j -= 1) {
+        if (this.cells[j]) {
+          if (!this.cells[j - 1]) {
+            this.cells[j].updateCell(j - 1);
+            this.cells[j - 1] = this.cells[j];
+            this.cells[j] = null;
+          }
+        }
+      }
+
+      // if (this.cells[i]) {
+      //   if (this.cells[i - 1]) {
+      //     if (this.cells[i].value === this.cells[i - 1].value) {
+      //       this.cells[i - 1].doubleValue();
+      //       this.cells[i].updateCell(i - 1);
+      //       this.cells[i].remove();
+      //       this.cells[i] = null;
+      //     }
+      //   } else {
+      //     this.cells[i].updateCell(i - 1);
+      //     this.cells[i - 1] = this.cells[i];
+      //     this.cells[i] = null;
+      //   }
+      // }
+    }
+  }
+
   createTile() {
-    let cell = Math.floor(Math.random() * 16 + 1);
-    let row = Math.ceil(cell / 4);
-    let col = (cell % 4) + 1;
-    if (this.positions[row][col]) {
-      console.log("positions");
+    let cell = Math.floor(Math.random() * 4 + 1);
+    if (this.cells[cell]) {
       this.createTile();
     } else {
-      let tile = new Tile({ className: `tile-${row}-${col}` });
-      this.positions[cell] = tile;
+      let tile = new Tile({ className: `cell-${cell}` });
+      this.cells[cell] = tile;
       this.tiles.push(tile);
     }
   }

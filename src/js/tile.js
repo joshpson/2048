@@ -4,17 +4,28 @@ export default class Tile {
     this.className = obj.className;
   }
 
+  grab() {
+    return document.querySelector(`.${this.className}`);
+  }
+
   startingNumber() {
     return Math.random() < 0.9 ? 2 : 4;
   }
 
-  updateClass(className) {
-    this.grab().className = className;
-    this.className = className;
+  updateCell(cell) {
+    let newClass = `cell-${cell}`;
+    this.grab().className = newClass;
+    this.className = newClass;
   }
 
-  grab() {
-    return document.querySelector(`.${this.className}`);
+  remove() {
+    this.grab().remove();
+  }
+
+  doubleValue() {
+    let newValue = this.value * 2;
+    this.grab().querySelector(".value").innerText = newValue;
+    this.value = newValue;
   }
 
   createDiv() {

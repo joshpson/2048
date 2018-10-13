@@ -14,82 +14,82 @@ $color-3: #e63946;
   transition: 250ms;
 }
 
-.tile-1-1 {
+.cell-1 {
   @extend %tile;
   transform: translate(0px, 0px);
 }
 
-.tile-1-2 {
+.cell-2 {
   @extend %tile;
   transform: translate(108px, 0px);
 }
 
-.tile-1-3 {
+.cell-3 {
   @extend %tile;
   transform: translate(216px, 0px);
 }
 
-.tile-1-4 {
+.cell-4 {
   @extend %tile;
   transform: translate(324px, 0px);
 }
 
-.tile-2-1 {
+.cell-5 {
   @extend %tile;
   transform: translate(0px, 108px);
 }
 
-.tile-2-2 {
+.cell-6 {
   @extend %tile;
   transform: translate(108px, 108px);
 }
 
-.tile-2-3 {
+.cell-7 {
   @extend %tile;
   transform: translate(216px, 108px);
 }
 
-.tile-2-4 {
+.cell-8 {
   @extend %tile;
   transform: translate(324px, 108px);
 }
 
-.tile-3-1 {
+.cell-9 {
   @extend %tile;
   transform: translate(0px, 216px);
 }
 
-.tile-3-2 {
+.cell-10 {
   @extend %tile;
   transform: translate(108px, 216px);
 }
 
-.tile-3-3 {
+.cell-11 {
   @extend %tile;
   transform: translate(216px, 216px);
 }
 
-.tile-3-4 {
+.cell-12 {
   @extend %tile;
   transform: translate(324px, 216px);
 }
 
-.tile-4-1 {
+.cell-13 {
   @extend %tile;
   transform: translate(0px, 324px);
 }
 
-.tile-4-2 {
+.cell-14 {
   @extend %tile;
   transform: translate(108px, 324px);
 }
 
-.tile-4-3 {
+.cell-15 {
   @extend %tile;
   transform: translate(216px, 324px);
 }
 
-.tile-4-4 {
+.cell-16 {
   @extend %tile;
   transform: translate(324px, 324px);
 }
