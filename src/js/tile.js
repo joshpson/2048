@@ -23,9 +23,8 @@ export default class Tile {
   }
 
   doubleValue() {
-    let newValue = this.value * 2;
-    this.grab().querySelector(".value").innerText = newValue;
-    this.value = newValue;
+    this.value = this.value * 2;
+    this.grab().querySelector(".value").innerText = this.value;
   }
 
   createDiv() {
