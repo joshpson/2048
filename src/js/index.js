@@ -19,6 +19,8 @@ function initialize() {
   let grid = new Grid();
   root().appendChild(background.returnContainer());
   root().appendChild(grid.returnContainer());
+  grid.createTile();
+  grid.createTile();
   addArrowListeners(grid);
 }
 
