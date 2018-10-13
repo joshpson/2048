@@ -3,6 +3,7 @@ import Tile from "./tile.js";
 export default class Grid {
   constructor(obj) {
     this.cells = {};
+    this.tileMoved = false;
   }
 
   grab() {
@@ -16,28 +17,41 @@ export default class Grid {
         this.updateRowLeft(5);
         this.updateRowLeft(9);
         this.updateRowLeft(13);
-        this.createTile();
+        if (this.tileMoved) {
+          this.createTile();
+          this.tileMoved = false;
+        }
+
         break;
       case 38: //up
         this.updateColUp(1);
         this.updateColUp(2);
         this.updateColUp(3);
         this.updateColUp(4);
-        this.createTile();
+        if (this.tileMoved) {
+          this.createTile();
+          this.tileMoved = false;
+        }
         break;
       case 39: //right
         this.updateRowRight(4);
         this.updateRowRight(8);
         this.updateRowRight(12);
         this.updateRowRight(16);
-        this.createTile();
+        if (this.tileMoved) {
+          this.createTile();
+          this.tileMoved = false;
+        }
         break;
       case 40: //down
         this.updateColDown(13);
         this.updateColDown(14);
         this.updateColDown(15);
         this.updateColDown(16);
-        this.createTile();
+        if (this.tileMoved) {
+          this.createTile();
+          this.tileMoved = false;
+        }
         break;
       default:
         break;
@@ -53,6 +67,7 @@ export default class Grid {
             tile.updateCell(j - 4);
             this.cells[j - 4] = tile;
             delete this.cells[j];
+            this.tileMoved = true;
           } else if (
             this.cells[j].value === this.cells[j - 4].value &&
             !tile.merged
@@ -61,6 +76,7 @@ export default class Grid {
             this.cells[j - 4].merged = true;
             tile.remove();
             delete this.cells[j];
+            this.tileMoved = true;
           }
         }
       }
@@ -81,6 +97,7 @@ export default class Grid {
             tile.updateCell(j + 4);
             this.cells[j + 4] = tile;
             delete this.cells[j];
+            this.tileMoved = true;
           } else if (
             this.cells[j].value === this.cells[j + 4].value &&
             !tile.merged
@@ -89,6 +106,7 @@ export default class Grid {
             this.cells[j + 4].merged = true;
             tile.remove();
             delete this.cells[j];
+            this.tileMoved = true;
           }
         }
       }
@@ -109,6 +127,7 @@ export default class Grid {
             tile.updateCell(j - 1);
             this.cells[j - 1] = tile;
             delete this.cells[j];
+            this.tileMoved = true;
           } else if (
             this.cells[j].value === this.cells[j - 1].value &&
             !tile.merged
@@ -117,6 +136,7 @@ export default class Grid {
             this.cells[j - 1].merged = true;
             tile.remove();
             delete this.cells[j];
+            this.tileMoved = true;
           }
         }
       }
@@ -137,6 +157,7 @@ export default class Grid {
             tile.updateCell(j + 1);
             this.cells[j + 1] = tile;
             delete this.cells[j];
+            this.tileMoved = true;
           } else if (
             this.cells[j].value === this.cells[j + 1].value &&
             !tile.merged
@@ -145,6 +166,7 @@ export default class Grid {
             this.cells[j + 1].merged = true;
             tile.remove();
             delete this.cells[j];
+            this.tileMoved = true;
           }
         }
       }
