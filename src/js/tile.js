@@ -2,6 +2,7 @@ export default class Tile {
   constructor(obj) {
     this.value = this.startingNumber();
     this.className = obj.className;
+    this.merged = false;
   }
 
   grab() {
