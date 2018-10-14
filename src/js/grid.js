@@ -24,10 +24,8 @@ export default class Grid {
   }
 
   createTile() {
-    //need to find a way to lose
     let cell = Math.floor(Math.random() * 16 + 1);
     if (this.cells[cell]) {
-      //check up down left right addition
       this.createTile();
     } else {
       let tile = new Tile({ cellClass: `cell-${cell}` });
@@ -47,6 +45,12 @@ export default class Grid {
     let div = document.createElement("div");
     div.className = "grid";
     return div;
+  }
+
+  winCheck() {
+    return Object.values(this.cells).some(tile => {
+      return tile.value === 2048;
+    });
   }
 
   loseCheck() {
@@ -122,6 +126,10 @@ export default class Grid {
       console.log("you lose");
       return;
     }
+    if (this.winCheck()) {
+      console.log("you win");
+      return;
+    }
   }
 
   updateNegative(start, length, increment) {
@@ -136,6 +144,10 @@ export default class Grid {
     }
     if (this.loseCheck()) {
       console.log("you lose");
+      return;
+    }
+    if (this.winCheck()) {
+      console.log("you win");
       return;
     }
   }
