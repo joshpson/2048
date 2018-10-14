@@ -33,57 +33,57 @@
 
 .val-2 {
   @extend %value;
-  background: #008f7a;
+  background: #004fff;
 }
 
 .val-4 {
   @extend %value;
-  background: #ef7e5e;
+  background: #31afd4;
 }
 
 .val-8 {
   @extend %value;
-  background: #83346a;
+  background: #902d41;
 }
 
 .val-16 {
   @extend %value;
-  background: #0081cf;
+  background: #ff007f;
 }
 
 .val-32 {
   @extend %value;
-  background: #c35069;
+  background: #050505;
 }
 
 .val-64 {
   @extend %value;
-  background: #845ec2;
+  background: #e67f0d;
 }
 
 .val-128 {
   @extend %value;
-  background: #f9f871;
+  background: #ffae03;
 }
 
 .val-256 {
   @extend %value;
-  background: #0089ba;
+  background: #fe4e00;
 }
 
 .val-512 {
   @extend %value;
-  background: #008e9b;
+  background: #e9190f;
 }
 
 .val-1024 {
   @extend %value;
-  background: #00c0ff;
+  background: #ff0f80;
 }
 
 .val-2048 {
   @extend %value;
-  background: #ffb959;
+  background: green;
 }
 
 @keyframes wobble {
@@ -107,7 +107,8 @@
   height: 100px;
   margin: 8px 4px;
   position: absolute;
-  transition: transform 250ms;
+  animation-timing-function: linear;
+  transition: transform 300ms;
 }
 
 .cell-1 {

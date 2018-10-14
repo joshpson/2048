@@ -27,6 +27,8 @@ export default class Grid {
     //need to find a way to lose
     let cell = Math.floor(Math.random() * 16 + 1);
     if (this.cells[cell]) {
+      //check up down left right addition
+      this.loseCheck();
       this.createTile();
     } else {
       let tile = new Tile({ cellClass: `cell-${cell}` });
@@ -46,6 +48,27 @@ export default class Grid {
     let div = document.createElement("div");
     div.className = "grid";
     return div;
+  }
+
+  loseCheck() {
+    Object.keys(this.cells).forEach(cell => {
+      if (
+        this.cells[cell].value === this.cells[cell - 1]
+          ? this.cells[cell - 1].value
+          : false || this.cells[cell].value === this.cells[cell + 1]
+            ? this.cells[cell + 1].value
+            : false || this.cells[cell].value === this.cells[cell - 4]
+              ? this.cells[cell - 4].value
+              : false || this.cells[cell].value === this.cells[cell + 4]
+                ? this.cells[cell + 4].value
+                : false
+      ) {
+        console.log("you lost");
+        return;
+      } else {
+        console.log("you good");
+      }
+    });
   }
 
   transform(keyCode) {
