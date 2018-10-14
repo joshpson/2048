@@ -3,7 +3,7 @@ import Grid from "./grid.js";
 import Tile from "./tile.js";
 
 function root() {
-  return document.getElementById("root");
+  return document.getElementById("game");
 }
 
 function addArrowListeners(grid) {

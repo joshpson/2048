@@ -4,6 +4,7 @@ export default class Grid {
   constructor(obj) {
     this.cells = {};
     this.tileMoved = false;
+    this.score = 0;
   }
 
   grab() {
@@ -164,6 +165,8 @@ export default class Grid {
       !nextTile.merged
     ) {
       nextTile.merge();
+      this.score = this.score += nextTile.value;
+      document.querySelector(".score").innerText = `Score: ${this.score}`;
       tile
         .grabCell()
         .classList.replace(tile.cellClass, `cell-${incrementFunc()}-remove`);

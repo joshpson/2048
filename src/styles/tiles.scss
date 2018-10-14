@@ -21,7 +21,7 @@
 }
 
 .enter {
-  animation-duration: 300ms;
+  animation-duration: 250ms;
   animation-name: bounceFade;
 }
 
@@ -108,7 +108,7 @@
   margin: 8px 4px;
   position: absolute;
   animation-timing-function: linear;
-  transition: transform 300ms;
+  transition: transform 250ms;
 }
 
 .cell-1 {
