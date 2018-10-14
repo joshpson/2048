@@ -144,11 +144,11 @@ export default class Grid {
       }
     }
     if (this.loseCheck()) {
-      console.log("you lose");
+      document.querySelector(".result").innerText = "YOU LOSE!";
       return;
     }
     if (this.winCheck()) {
-      console.log("you win");
+      document.querySelector(".result").innerText = "YOU WIN!";
       return;
     }
   }
