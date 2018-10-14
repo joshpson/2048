@@ -14,6 +14,7 @@ export default class Grid {
     Object.values(this.cells).forEach(tile => {
       if (tile.merged) {
         tile.merged = false;
+        tile.toggleValueClass("merged");
       }
     });
   }
@@ -45,24 +46,29 @@ export default class Grid {
   transform(keyCode) {
     switch (keyCode) {
       case 37: //left
+        this.resetTiles();
         for (let i = 1; i <= 13; i += 4) {
           this.updatePositive(i, 3, 1);
         }
         this.tileCheck();
+
         break;
       case 38: //up
+        this.resetTiles();
         for (let i = 1; i <= 4; i += 1) {
           this.updatePositive(i, 12, 4);
         }
         this.tileCheck();
         break;
       case 39: //right
+        this.resetTiles();
         for (let i = 4; i <= 16; i += 4) {
           this.updateNegative(i, 3, 1);
         }
         this.tileCheck();
         break;
       case 40: //down
+        this.resetTiles();
         for (let i = 13; i <= 16; i += 1) {
           this.updateNegative(i, 12, 4);
         }
@@ -90,6 +96,7 @@ export default class Grid {
           ) {
             this.cells[j - increment].doubleValue();
             this.cells[j - increment].merged = true;
+            this.cells[j - increment].toggleValueClass("merged");
             tile.remove();
             delete this.cells[j];
             this.tileMoved = true;
@@ -97,7 +104,6 @@ export default class Grid {
         }
       }
     }
-    this.resetTiles();
   }
 
   updateNegative(start, length, increment) {
@@ -117,6 +123,7 @@ export default class Grid {
           ) {
             this.cells[j + increment].doubleValue();
             this.cells[j + increment].merged = true;
+            this.cells[j + increment].toggleValueClass("merged");
             tile.remove();
             delete this.cells[j];
             this.tileMoved = true;
@@ -124,6 +131,5 @@ export default class Grid {
         }
       }
     }
-    this.resetTiles();
   }
 }

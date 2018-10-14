@@ -6,8 +6,12 @@ export default class Tile {
     this.merged = false;
   }
 
-  grab() {
+  grabCell() {
     return document.querySelector(`.${this.cellClass}`);
+  }
+
+  grabValDiv() {
+    return document.querySelector(`.${this.cellClass}`).querySelector(".val");
   }
 
   startingNumber() {
@@ -16,33 +20,45 @@ export default class Tile {
 
   updateCell(cell) {
     let newCellClass = `cell-${cell}`;
-    this.updateClass(this.cellClass, newCellClass);
+    this.updateCellClass(this.cellClass, newCellClass);
     this.cellClass = newCellClass;
   }
 
-  updateClass(oldClass, newClass) {
-    this.grab().classList.replace(oldClass, newClass);
+  updateCellClass(oldClass, newClass) {
+    this.grabCell().classList.replace(oldClass, newClass);
+  }
+
+  updateValueClass(oldClass, newClass) {
+    this.grabValDiv().classList.replace(oldClass, newClass);
+  }
+
+  toggleValueClass(className) {
+    this.grabValDiv().classList.toggle(className);
+    console.log(this.grabValDiv().classList, this);
   }
 
   remove() {
-    this.grab().remove();
+    this.grabCell().remove();
   }
 
   doubleValue() {
     this.value = this.value * 2;
     let newValueClass = `val-${this.value}`;
-    this.updateClass(this.valueClass, newValueClass);
+    this.updateValueClass(this.valueClass, newValueClass);
     this.valueClass = newValueClass;
-    this.grab().querySelector(".value").innerText = this.value;
+    this.grabCell().querySelector(".number").innerText = this.value;
   }
 
   createDiv() {
-    let div = document.createElement("div");
-    let value = document.createElement("div");
-    value.innerText = this.value;
-    value.className = "value";
-    div.appendChild(value);
-    div.className = `${this.cellClass} ${this.valueClass}`;
-    return div;
+    let cell = document.createElement("div");
+    let numberContainer = document.createElement("div");
+    let number = document.createElement("div");
+    number.innerText = this.value;
+    number.className = "number";
+    cell.appendChild(numberContainer);
+    numberContainer.appendChild(number);
+    cell.className = `${this.cellClass}`;
+    numberContainer.className = `val ${this.valueClass}`;
+    return cell;
   }
 }

@@ -1,26 +1,123 @@
-$bg-color: #cae2ee;
-$box-color: #bfc6c5;
-$color-1: #043844;
-$color-2: #fffbcf;
-$color-3: #e63946;
-
-@keyframes fadeIn {
+@keyframes bounceFade {
   0% {
+    transform: scale(1);
     opacity: 0;
   }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
   100% {
+    transform: scale(1);
     opacity: 1;
   }
 }
 
-%tile {
+.number {
+  text-align: center;
+  color: white;
+  padding: 25px;
+  font-size: 35px;
+}
+
+%value {
+  // animation-duration: 300ms;
+  // animation-name: bounceFade;
   border-radius: 5px;
+  height: 100px;
+  width: 100px;
+}
+
+.val-2 {
+  @extend %value;
+  background: #008f7a;
+}
+
+.val-4 {
+  @extend %value;
+  background: #008e9b;
+}
+
+.val-8 {
+  @extend %value;
+  background: #83346a;
+}
+
+.val-16 {
+  @extend %value;
+  background: #0081cf;
+}
+
+.val-32 {
+  @extend %value;
+  background: #c35069;
+}
+
+.val-64 {
+  @extend %value;
+  background: #845ec2;
+}
+
+.val-128 {
+  @extend %value;
+  background: #f9f871;
+}
+
+.val-256 {
+  @extend %value;
+  background: #0089ba;
+}
+
+.val-512 {
+  @extend %value;
+  background: #ef7e5e;
+}
+
+.val-1024 {
+  @extend %value;
+  background: #00c0ff;
+}
+
+.val-2048 {
+  @extend %value;
+  background: #ffb959;
+}
+
+@keyframes wobble {
+  0% {
+    transform: translateX(0%);
+  }
+  15% {
+    transform: translateX(-25%) rotate(-5deg);
+  }
+  30% {
+    transform: translateX(20%) rotate(3deg);
+  }
+  45% {
+    transform: translateX(-15%) rotate(-3deg);
+  }
+  60% {
+    transform: translateX(10%) rotate(2deg);
+  }
+  75% {
+    transform: translateX(-5%) rotate(-1deg);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.merged {
+  animation-duration: 400ms;
+  animation-name: wobble;
+}
+
+%tile {
   width: 100px;
   height: 100px;
   margin: 8px 4px;
   position: absolute;
-  animation: fadeIn 600ms;
-  transition: transform 400ms;
+  transition: transform 250ms;
 }
 
 .cell-1 {
@@ -101,55 +198,4 @@ $color-3: #e63946;
 .cell-16 {
   @extend %tile;
   transform: translate(324px, 324px);
-}
-
-.value {
-  text-align: center;
-  color: white;
-  padding: 25px;
-  font-size: 35px;
-}
-
-.val-2 {
-  background: #008f7a;
-}
-
-.val-4 {
-  background: #008e9b;
-}
-
-.val-8 {
-  background: #ffb959;
-}
-
-.val-16 {
-  background: #0081cf;
-}
-
-.val-32 {
-  background: #c35069;
-}
-
-.val-64 {
-  background: #845ec2;
-}
-
-.val-128 {
-  background: #f9f871;
-}
-
-.val-256 {
-  background: #0089ba;
-}
-
-.val-512 {
-  background: #ef7e5e;
-}
-
-.val-1024 {
-  background: #00c0ff;
-}
-
-.val-2048 {
-  background: #83346a;
 }
