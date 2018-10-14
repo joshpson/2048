@@ -12,10 +12,10 @@ export default class Grid {
 
   resetTiles() {
     Object.values(this.cells).forEach(tile => {
-      if (tile.merged) {
-        tile.merged = false;
-        tile.toggleValueClass("merged");
-      }
+      tile.removeValueClass("enter");
+      tile.removeValueClass("merged");
+      void tile.grabValDiv().offsetWidth; //Magic so the remove and add works!
+      tile.merged = false;
     });
   }
 
@@ -51,7 +51,6 @@ export default class Grid {
           this.updatePositive(i, 3, 1);
         }
         this.tileCheck();
-
         break;
       case 38: //up
         this.resetTiles();
@@ -96,7 +95,7 @@ export default class Grid {
           ) {
             this.cells[j - increment].doubleValue();
             this.cells[j - increment].merged = true;
-            this.cells[j - increment].toggleValueClass("merged");
+            this.cells[j - increment].addValueClass("merged");
             tile.remove();
             delete this.cells[j];
             this.tileMoved = true;
@@ -123,7 +122,7 @@ export default class Grid {
           ) {
             this.cells[j + increment].doubleValue();
             this.cells[j + increment].merged = true;
-            this.cells[j + increment].toggleValueClass("merged");
+            this.cells[j + increment].addValueClass("merged");
             tile.remove();
             delete this.cells[j];
             this.tileMoved = true;

@@ -32,9 +32,12 @@ export default class Tile {
     this.grabValDiv().classList.replace(oldClass, newClass);
   }
 
-  toggleValueClass(className) {
-    this.grabValDiv().classList.toggle(className);
-    console.log(this.grabValDiv().classList, this);
+  addValueClass(className) {
+    this.grabValDiv().classList.add(className);
+  }
+
+  removeValueClass(className) {
+    this.grabValDiv().classList.remove(className);
   }
 
   remove() {
@@ -58,7 +61,7 @@ export default class Tile {
     cell.appendChild(numberContainer);
     numberContainer.appendChild(number);
     cell.className = `${this.cellClass}`;
-    numberContainer.className = `val ${this.valueClass}`;
+    numberContainer.className = `val ${this.valueClass} enter`;
     return cell;
   }
 }
