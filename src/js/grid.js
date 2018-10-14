@@ -10,167 +10,7 @@ export default class Grid {
     return document.querySelector(`.grid`);
   }
 
-  transform(keyCode) {
-    switch (keyCode) {
-      case 37: //left
-        this.updateRowLeft(1);
-        this.updateRowLeft(5);
-        this.updateRowLeft(9);
-        this.updateRowLeft(13);
-        if (this.tileMoved) {
-          this.createTile();
-          this.tileMoved = false;
-        }
-
-        break;
-      case 38: //up
-        this.updateColUp(1);
-        this.updateColUp(2);
-        this.updateColUp(3);
-        this.updateColUp(4);
-        if (this.tileMoved) {
-          this.createTile();
-          this.tileMoved = false;
-        }
-        break;
-      case 39: //right
-        this.updateRowRight(4);
-        this.updateRowRight(8);
-        this.updateRowRight(12);
-        this.updateRowRight(16);
-        if (this.tileMoved) {
-          this.createTile();
-          this.tileMoved = false;
-        }
-        break;
-      case 40: //down
-        this.updateColDown(13);
-        this.updateColDown(14);
-        this.updateColDown(15);
-        this.updateColDown(16);
-        if (this.tileMoved) {
-          this.createTile();
-          this.tileMoved = false;
-        }
-        break;
-      default:
-        break;
-    }
-  }
-
-  updateColUp(start) {
-    for (let i = start + 4; i <= start + 12; i += 4) {
-      for (let j = i; j > start; j -= 4) {
-        if (this.cells[j]) {
-          let tile = this.cells[j];
-          if (!this.cells[j - 4]) {
-            tile.updateCell(j - 4);
-            this.cells[j - 4] = tile;
-            delete this.cells[j];
-            this.tileMoved = true;
-          } else if (
-            this.cells[j].value === this.cells[j - 4].value &&
-            !tile.merged
-          ) {
-            this.cells[j - 4].doubleValue();
-            this.cells[j - 4].merged = true;
-            tile.remove();
-            delete this.cells[j];
-            this.tileMoved = true;
-          }
-        }
-      }
-    }
-    Object.values(this.cells).forEach(tile => {
-      if (tile.merged) {
-        tile.merged = false;
-      }
-    });
-  }
-
-  updateColDown(start) {
-    for (let i = start - 4; i >= start - 12; i -= 4) {
-      for (let j = i; j < start; j += 4) {
-        if (this.cells[j]) {
-          let tile = this.cells[j];
-          if (!this.cells[j + 4]) {
-            tile.updateCell(j + 4);
-            this.cells[j + 4] = tile;
-            delete this.cells[j];
-            this.tileMoved = true;
-          } else if (
-            this.cells[j].value === this.cells[j + 4].value &&
-            !tile.merged
-          ) {
-            this.cells[j + 4].doubleValue();
-            this.cells[j + 4].merged = true;
-            tile.remove();
-            delete this.cells[j];
-            this.tileMoved = true;
-          }
-        }
-      }
-    }
-    Object.values(this.cells).forEach(tile => {
-      if (tile.merged) {
-        tile.merged = false;
-      }
-    });
-  }
-
-  updateRowLeft(start) {
-    for (let i = start + 1; i <= start + 3; i += 1) {
-      for (let j = i; j > start; j -= 1) {
-        if (this.cells[j]) {
-          let tile = this.cells[j];
-          if (!this.cells[j - 1]) {
-            tile.updateCell(j - 1);
-            this.cells[j - 1] = tile;
-            delete this.cells[j];
-            this.tileMoved = true;
-          } else if (
-            this.cells[j].value === this.cells[j - 1].value &&
-            !tile.merged
-          ) {
-            this.cells[j - 1].doubleValue();
-            this.cells[j - 1].merged = true;
-            tile.remove();
-            delete this.cells[j];
-            this.tileMoved = true;
-          }
-        }
-      }
-    }
-    Object.values(this.cells).forEach(tile => {
-      if (tile.merged) {
-        tile.merged = false;
-      }
-    });
-  }
-
-  updateRowRight(start) {
-    for (let i = start - 1; i >= start - 3; i -= 1) {
-      for (let j = i; j < start; j += 1) {
-        if (this.cells[j]) {
-          let tile = this.cells[j];
-          if (!this.cells[j + 1]) {
-            tile.updateCell(j + 1);
-            this.cells[j + 1] = tile;
-            delete this.cells[j];
-            this.tileMoved = true;
-          } else if (
-            this.cells[j].value === this.cells[j + 1].value &&
-            !tile.merged
-          ) {
-            this.cells[j + 1].doubleValue();
-            this.cells[j + 1].merged = true;
-            tile.remove();
-            delete this.cells[j];
-            this.tileMoved = true;
-          }
-        }
-      }
-    }
+  resetTiles() {
     Object.values(this.cells).forEach(tile => {
       if (tile.merged) {
         tile.merged = false;
@@ -183,16 +23,105 @@ export default class Grid {
     if (this.cells[cell]) {
       this.createTile();
     } else {
-      let tile = new Tile({ className: `cell-${cell}` });
+      let tile = new Tile({ cellClass: `cell-${cell}` });
       this.cells[cell] = tile;
       this.grab().appendChild(tile.createDiv());
+    }
+  }
+
+  tileCheck() {
+    if (this.tileMoved) {
+      this.createTile();
+      this.tileMoved = false;
     }
   }
 
   returnContainer() {
     let div = document.createElement("div");
     div.className = "grid";
-
     return div;
+  }
+
+  transform(keyCode) {
+    switch (keyCode) {
+      case 37: //left
+        for (let i = 1; i <= 13; i += 4) {
+          this.updatePositive(i, 3, 1);
+        }
+        this.tileCheck();
+        break;
+      case 38: //up
+        for (let i = 1; i <= 4; i += 1) {
+          this.updatePositive(i, 12, 4);
+        }
+        this.tileCheck();
+        break;
+      case 39: //right
+        for (let i = 4; i <= 16; i += 4) {
+          this.updateNegative(i, 3, 1);
+        }
+        this.tileCheck();
+        break;
+      case 40: //down
+        for (let i = 13; i <= 16; i += 1) {
+          this.updateNegative(i, 12, 4);
+        }
+        this.tileCheck();
+        break;
+      default:
+        break;
+    }
+  }
+
+  updatePositive(start, length, increment) {
+    for (let i = start + increment; i <= start + length; i += increment) {
+      for (let j = i; j > start; j -= increment) {
+        if (this.cells[j]) {
+          let tile = this.cells[j];
+          if (!this.cells[j - increment]) {
+            tile.updateCell(j - increment);
+            this.cells[j - increment] = tile;
+            delete this.cells[j];
+            this.tileMoved = true;
+          } else if (
+            this.cells[j].value === this.cells[j - increment].value &&
+            !tile.merged
+          ) {
+            this.cells[j - increment].doubleValue();
+            this.cells[j - increment].merged = true;
+            tile.remove();
+            delete this.cells[j];
+            this.tileMoved = true;
+          }
+        }
+      }
+    }
+    this.resetTiles();
+  }
+
+  updateNegative(start, length, increment) {
+    for (let i = start - increment; i >= start - length; i -= increment) {
+      for (let j = i; j < start; j += increment) {
+        if (this.cells[j]) {
+          let tile = this.cells[j];
+          if (!this.cells[j + increment]) {
+            tile.updateCell(j + increment);
+            this.cells[j + increment] = tile;
+            delete this.cells[j];
+            this.tileMoved = true;
+          } else if (
+            this.cells[j].value === this.cells[j + increment].value &&
+            !tile.merged
+          ) {
+            this.cells[j + increment].doubleValue();
+            this.cells[j + increment].merged = true;
+            tile.remove();
+            delete this.cells[j];
+            this.tileMoved = true;
+          }
+        }
+      }
+    }
+    this.resetTiles();
   }
 }
