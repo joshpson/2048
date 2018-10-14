@@ -28,7 +28,6 @@ export default class Grid {
     let cell = Math.floor(Math.random() * 16 + 1);
     if (this.cells[cell]) {
       //check up down left right addition
-      this.loseCheck();
       this.createTile();
     } else {
       let tile = new Tile({ cellClass: `cell-${cell}` });
@@ -51,24 +50,27 @@ export default class Grid {
   }
 
   loseCheck() {
-    Object.keys(this.cells).forEach(cell => {
-      if (
-        this.cells[cell].value === this.cells[cell - 1]
-          ? this.cells[cell - 1].value
-          : false || this.cells[cell].value === this.cells[cell + 1]
-            ? this.cells[cell + 1].value
-            : false || this.cells[cell].value === this.cells[cell - 4]
-              ? this.cells[cell - 4].value
-              : false || this.cells[cell].value === this.cells[cell + 4]
-                ? this.cells[cell + 4].value
-                : false
-      ) {
-        console.log("you lost");
-        return;
-      } else {
-        console.log("you good");
-      }
-    });
+    let cells = this.cells;
+    let keys = Object.keys(this.cells);
+    if (keys.length === 16) {
+      return !keys.some(keyString => {
+        let key = parseInt(keyString);
+        if (key < 4 || (key > 4 && key < 8) || (key > 8 && key < 12)) {
+          return (
+            cells[key].value === cells[key + 1].value ||
+            cells[key].value === cells[key + 4].value
+          );
+        }
+        if (key === 4 || key === 8 || key === 12) {
+          return cells[key].value === cells[key + 4].value;
+        }
+        if (key > 12 && key < 16) {
+          return cells[key].value === cells[key + 1].value;
+        }
+      });
+    } else {
+      return false;
+    }
   }
 
   transform(keyCode) {
@@ -116,6 +118,10 @@ export default class Grid {
         }
       }
     }
+    if (this.loseCheck()) {
+      console.log("you lose");
+      return;
+    }
   }
 
   updateNegative(start, length, increment) {
@@ -127,6 +133,10 @@ export default class Grid {
           });
         }
       }
+    }
+    if (this.loseCheck()) {
+      console.log("you lose");
+      return;
     }
   }
 
