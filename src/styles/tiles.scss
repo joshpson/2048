@@ -98,7 +98,7 @@
 }
 
 .merged {
-  animation-duration: 300ms;
+  animation-duration: 200ms;
   animation-name: wobble;
 }
 
@@ -187,5 +187,90 @@
 
 .cell-16 {
   @extend %tile;
+  transform: translate(324px, 324px);
+}
+
+%removal-tile {
+  @extend %tile;
+  z-index: -1;
+}
+
+.cell-1-remove {
+  @extend %removal-tile;
+  transform: translate(0px, 0px);
+}
+
+.cell-2-remove {
+  @extend %removal-tile;
+  transform: translate(108px, 0px);
+}
+
+.cell-3-remove {
+  @extend %removal-tile;
+  transform: translate(216px, 0px);
+}
+
+.cell-4-remove {
+  @extend %removal-tile;
+  transform: translate(324px, 0px);
+}
+
+.cell-5-remove {
+  @extend %removal-tile;
+  transform: translate(0px, 108px);
+}
+
+.cell-6-remove {
+  @extend %removal-tile;
+  transform: translate(108px, 108px);
+}
+
+.cell-7-remove {
+  @extend %removal-tile;
+  transform: translate(216px, 108px);
+}
+
+.cell-8-remove {
+  @extend %removal-tile;
+  transform: translate(324px, 108px);
+}
+
+.cell-9-remove {
+  @extend %removal-tile;
+  transform: translate(0px, 216px);
+}
+
+.cell-10-remove {
+  @extend %removal-tile;
+  transform: translate(108px, 216px);
+}
+
+.cell-11-remove {
+  @extend %removal-tile;
+  transform: translate(216px, 216px);
+}
+
+.cell-12-remove {
+  @extend %removal-tile;
+  transform: translate(324px, 216px);
+}
+
+.cell-13-remove {
+  @extend %removal-tile;
+  transform: translate(0px, 324px);
+}
+
+.cell-14-remove {
+  @extend %removal-tile;
+  transform: translate(108px, 324px);
+}
+
+.cell-15-remove {
+  @extend %removal-tile;
+  transform: translate(216px, 324px);
+}
+
+.cell-16-remove {
+  @extend %removal-tile;
   transform: translate(324px, 324px);
 }

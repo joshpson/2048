@@ -12,14 +12,19 @@ export default class Grid {
 
   resetTiles() {
     Object.values(this.cells).forEach(tile => {
-      tile.removeValueClass("enter");
-      tile.removeValueClass("merged");
-      void tile.grabValDiv().offsetWidth; //Magic so the remove and add works!
-      tile.merged = false;
+      if (tile.new) {
+        tile.removeValueClass("enter");
+      }
+      if (tile.merged) {
+        tile.removeValueClass("merged");
+        tile.merged = false;
+        void tile.grabInnerDiv().offsetWidth; //Magic so the remove and add works!
+      }
     });
   }
 
   createTile() {
+    //need to find a way to lose
     let cell = Math.floor(Math.random() * 16 + 1);
     if (this.cells[cell]) {
       this.createTile();
@@ -82,24 +87,9 @@ export default class Grid {
     for (let i = start + increment; i <= start + length; i += increment) {
       for (let j = i; j > start; j -= increment) {
         if (this.cells[j]) {
-          let tile = this.cells[j];
-          if (!this.cells[j - increment]) {
-            tile.updateCell(j - increment);
-            this.cells[j - increment] = tile;
-            delete this.cells[j];
-            this.tileMoved = true;
-          } else if (
-            this.cells[j].value === this.cells[j - increment].value &&
-            !tile.merged &&
-            !this.cells[j - increment].merged
-          ) {
-            this.cells[j - increment].doubleValue();
-            this.cells[j - increment].merged = true;
-            this.cells[j - increment].addValueClass("merged");
-            tile.remove();
-            delete this.cells[j];
-            this.tileMoved = true;
-          }
+          this.updateCells(j, function() {
+            return j - increment;
+          });
         }
       }
     }
@@ -109,26 +99,41 @@ export default class Grid {
     for (let i = start - increment; i >= start - length; i -= increment) {
       for (let j = i; j < start; j += increment) {
         if (this.cells[j]) {
-          let tile = this.cells[j];
-          if (!this.cells[j + increment]) {
-            tile.updateCell(j + increment);
-            this.cells[j + increment] = tile;
-            delete this.cells[j];
-            this.tileMoved = true;
-          } else if (
-            this.cells[j].value === this.cells[j + increment].value &&
-            !tile.merged &&
-            !this.cells[j + increment].merged
-          ) {
-            this.cells[j + increment].doubleValue();
-            this.cells[j + increment].merged = true;
-            this.cells[j + increment].addValueClass("merged");
-            tile.remove();
-            delete this.cells[j];
-            this.tileMoved = true;
-          }
+          this.updateCells(j, function() {
+            return j + increment;
+          });
         }
       }
     }
+  }
+
+  updateCells(cell, incrementFunc) {
+    let tile = this.cells[cell];
+    let nextTile = this.cells[incrementFunc()];
+    if (!nextTile) {
+      this.moveTile(tile, incrementFunc);
+      delete this.cells[cell];
+    } else if (
+      tile.value === nextTile.value &&
+      !tile.merged &&
+      !nextTile.merged
+    ) {
+      nextTile.merge();
+      tile
+        .grabCell()
+        .classList.replace(tile.cellClass, `cell-${incrementFunc()}-remove`);
+      tile.cellClass = `cell-${incrementFunc()}-remove`;
+      setTimeout(() => {
+        tile.removeCell();
+      }, 80);
+      this.tileMoved = true;
+      delete this.cells[cell];
+    }
+  }
+
+  moveTile(tile, incrementFunc) {
+    tile.updateCell(incrementFunc());
+    this.cells[incrementFunc()] = tile;
+    this.tileMoved = true;
   }
 }

@@ -1,67 +1,66 @@
 export default class Tile {
   constructor(obj) {
-    this.value = this.startingNumber();
+    this.value = Math.random() < 0.9 ? 2 : 4;
     this.cellClass = obj.cellClass;
     this.valueClass = `val-${this.value}`;
     this.merged = false;
+    this.new = true;
   }
 
   grabCell() {
     return document.querySelector(`.${this.cellClass}`);
   }
 
-  grabValDiv() {
-    return document.querySelector(`.${this.cellClass}`).querySelector(".val");
+  grabInnerDiv() {
+    return this.grabCell().querySelector(".val");
   }
 
-  startingNumber() {
-    return Math.random() < 0.9 ? 2 : 4;
+  grabNumberDiv() {
+    return this.grabInnerDiv().querySelector(".number");
   }
 
   updateCell(cell) {
     let newCellClass = `cell-${cell}`;
-    this.updateCellClass(this.cellClass, newCellClass);
+    this.grabCell().classList.replace(this.cellClass, newCellClass);
     this.cellClass = newCellClass;
   }
 
-  updateCellClass(oldClass, newClass) {
-    this.grabCell().classList.replace(oldClass, newClass);
-  }
-
-  updateValueClass(oldClass, newClass) {
-    this.grabValDiv().classList.replace(oldClass, newClass);
-  }
-
   addValueClass(className) {
-    this.grabValDiv().classList.add(className);
+    this.grabInnerDiv().classList.add(className);
   }
 
   removeValueClass(className) {
-    this.grabValDiv().classList.remove(className);
+    this.grabInnerDiv().classList.remove(className);
   }
 
-  remove() {
+  removeCell() {
     this.grabCell().remove();
+  }
+
+  merge() {
+    this.doubleValue();
+    this.merged = true;
+    this.addValueClass("merged");
   }
 
   doubleValue() {
     this.value = this.value * 2;
     let newValueClass = `val-${this.value}`;
-    this.updateValueClass(this.valueClass, newValueClass);
+    this.grabInnerDiv().classList.replace(this.valueClass, newValueClass);
     this.valueClass = newValueClass;
-    this.grabCell().querySelector(".number").innerText = this.value;
+    this.grabNumberDiv().innerText = this.value;
   }
 
   createDiv() {
     let cell = document.createElement("div");
-    let numberContainer = document.createElement("div");
+    let innerDiv = document.createElement("div");
     let number = document.createElement("div");
     number.innerText = this.value;
     number.className = "number";
-    cell.appendChild(numberContainer);
-    numberContainer.appendChild(number);
+    cell.appendChild(innerDiv);
+    innerDiv.appendChild(number);
     cell.className = `${this.cellClass}`;
-    numberContainer.className = `val ${this.valueClass} enter`;
+    innerDiv.className = `val ${this.valueClass} enter`;
     return cell;
   }
 }
