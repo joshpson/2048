@@ -85,7 +85,8 @@ export default class Grid {
             this.tileMoved = true;
           } else if (
             this.cells[j].value === this.cells[j - increment].value &&
-            !tile.merged
+            !tile.merged &&
+            !this.cells[j - increment].merged
           ) {
             this.cells[j - increment].doubleValue();
             this.cells[j - increment].merged = true;
@@ -111,7 +112,8 @@ export default class Grid {
             this.tileMoved = true;
           } else if (
             this.cells[j].value === this.cells[j + increment].value &&
-            !tile.merged
+            !tile.merged &&
+            !this.cells[j + increment].merged
           ) {
             this.cells[j + increment].doubleValue();
             this.cells[j + increment].merged = true;
