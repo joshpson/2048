@@ -6,8 +6,8 @@
 }
 
 .tile-enter {
-  animation-duration: 250ms;
-  animation-name: bounceFade;
+  animation-duration: 150ms;
+  animation-name: fade;
 }
 
 .tile-merged {
@@ -15,17 +15,11 @@
   animation-name: wobble;
 }
 
-@keyframes bounceFade {
+@keyframes fade {
   0% {
-    transform: scale(1);
     opacity: 0;
   }
-  50% {
-    transform: scale(1.08);
-    opacity: 1;
-  }
   100% {
-    transform: scale(1);
     opacity: 1;
   }
 }
@@ -46,8 +40,8 @@
   height: 80px;
   margin: 8px;
   position: absolute;
-  animation-timing-function: linear;
-  transition: transform 200ms;
+  animation-timing-function: ease-in;
+  transition: transform 220ms;
 }
 
 $cell-move1: 88px;

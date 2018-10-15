@@ -15,11 +15,13 @@ function keyHandler(e, grid) {
 
 function addArrowListeners(grid) {
   document.addEventListener("keydown", e => {
-    e.preventDefault();
+    if (e.keyCode >= 37 && e.keyCode <= 40) {
+      e.preventDefault();
+    }
   });
   document.addEventListener(
     "keydown",
-    _.throttle(e => keyHandler(e, grid), 250)
+    _.throttle(e => keyHandler(e, grid), 300)
   );
 }
 

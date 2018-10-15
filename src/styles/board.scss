@@ -1,4 +1,5 @@
-$box-color: #bfc6c5;
+$box-color: #999999;
+$cell-color: #bfc6c5;
 
 %game-grid {
   padding: 8px;
@@ -23,11 +24,9 @@ $box-color: #bfc6c5;
 }
 
 .background-cell {
+  background: $cell-color;
   border: 1px;
   border-radius: 5px;
   width: 80px;
   height: 80px;
-  box-shadow: 4px 3px 0px 0px rgba(0, 0, 0, 0.24) inset;
-  -webkit-box-shadow: 4px 3px 0px 0px rgba(0, 0, 0, 0.24) inset;
-  -moz-box-shadow: 4px 3px 0px 0px rgba(0, 0, 0, 0.24) inset;
 }

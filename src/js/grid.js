@@ -29,9 +29,11 @@ export default class Grid {
     if (this.cells[cell]) {
       this.createTile();
     } else {
-      let tile = new Tile({ cellClass: `cell-${cell}` });
-      this.cells[cell] = tile;
-      this.grab().appendChild(tile.createDiv());
+      setTimeout(() => {
+        let tile = new Tile({ cellClass: `cell-${cell}` });
+        this.cells[cell] = tile;
+        this.grab().appendChild(tile.createDiv());
+      }, 100);
     }
   }
 
@@ -173,7 +175,7 @@ export default class Grid {
       tile.cellClass = `cell-${incrementFunc()}-remove`;
       setTimeout(() => {
         tile.removeCell();
-      }, 80);
+      }, 50);
       this.tileMoved = true;
       delete this.cells[cell];
     }
