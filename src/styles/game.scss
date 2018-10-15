@@ -1,0 +1,45 @@
+$box-color: #bfc6c5;
+
+%game-grid {
+  padding: 8px;
+  border-radius: 5px;
+  // display: grid;
+  // grid-template-colums: 108px 108px 108px 108px;
+  // // grid-template-rows: 108px 108px 108px 108px;
+  // max-width: 500px;
+  // // height: 440px;
+  position: absolute;
+  max-width: 500px;
+  display: grid;
+  grid-template-columns: 80px 80px 80px 80px;
+  grid-template-rows: 80px 80px 80px 80px;
+  grid-gap: 8px;
+}
+
+.game-background {
+  @extend %game-grid;
+  background: $box-color;
+  z-index: 1;
+}
+
+.cells {
+  @extend %game-grid;
+  z-index: 2;
+}
+
+// .background-row {
+//   display: flex;
+//   margin: 8px 0px;
+//   width: 100%;
+//   height: 100px;
+// }
+
+.background-cell {
+  border: 1px;
+  border-radius: 5px;
+  width: 80px;
+  height: 80px;
+  box-shadow: 4px 3px 0px 0px rgba(0, 0, 0, 0.24) inset;
+  -webkit-box-shadow: 4px 3px 0px 0px rgba(0, 0, 0, 0.24) inset;
+  -moz-box-shadow: 4px 3px 0px 0px rgba(0, 0, 0, 0.24) inset;
+}

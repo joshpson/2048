@@ -8,7 +8,7 @@ export default class Grid {
   }
 
   grab() {
-    return document.querySelector(`.grid`);
+    return document.querySelector(`.cells`);
   }
 
   resetTiles() {
@@ -44,7 +44,7 @@ export default class Grid {
 
   returnContainer() {
     let div = document.createElement("div");
-    div.className = "grid";
+    div.className = "cells";
     return div;
   }
 

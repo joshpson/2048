@@ -4,7 +4,7 @@
     opacity: 0;
   }
   50% {
-    transform: scale(1.1);
+    transform: scale(1.08);
     opacity: 1;
   }
   100% {
@@ -16,8 +16,8 @@
 .number {
   text-align: center;
   color: white;
-  padding: 25px;
-  font-size: 35px;
+  padding: 20px;
+  font-size: 30px;
 }
 
 .enter {
@@ -27,8 +27,8 @@
 
 %value {
   border-radius: 5px;
-  height: 100px;
-  width: 100px;
+  height: 80px;
+  width: 80px;
 }
 
 .val-2 {
@@ -103,13 +103,17 @@
 }
 
 %tile {
-  width: 100px;
-  height: 100px;
-  margin: 8px 4px;
+  width: 80px;
+  height: 80px;
+  margin: 8px;
   position: absolute;
   animation-timing-function: linear;
   transition: transform 250ms;
 }
+
+$cell-move1: 88px;
+$cell-move2: 176px;
+$cell-move3: 264px;
 
 .cell-1 {
   @extend %tile;
@@ -118,77 +122,77 @@
 
 .cell-2 {
   @extend %tile;
-  transform: translate(108px, 0px);
+  transform: translate(#{$cell-move1}, 0px);
 }
 
 .cell-3 {
   @extend %tile;
-  transform: translate(216px, 0px);
+  transform: translate(#{$cell-move2}, 0px);
 }
 
 .cell-4 {
   @extend %tile;
-  transform: translate(324px, 0px);
+  transform: translate(#{$cell-move3}, 0px);
 }
 
 .cell-5 {
   @extend %tile;
-  transform: translate(0px, 108px);
+  transform: translate(0px, #{$cell-move1});
 }
 
 .cell-6 {
   @extend %tile;
-  transform: translate(108px, 108px);
+  transform: translate(#{$cell-move1}, #{$cell-move1});
 }
 
 .cell-7 {
   @extend %tile;
-  transform: translate(216px, 108px);
+  transform: translate(#{$cell-move2}, #{$cell-move1});
 }
 
 .cell-8 {
   @extend %tile;
-  transform: translate(324px, 108px);
+  transform: translate(#{$cell-move3}, #{$cell-move1});
 }
 
 .cell-9 {
   @extend %tile;
-  transform: translate(0px, 216px);
+  transform: translate(0px, #{$cell-move2});
 }
 
 .cell-10 {
   @extend %tile;
-  transform: translate(108px, 216px);
+  transform: translate(#{$cell-move1}, #{$cell-move2});
 }
 
 .cell-11 {
   @extend %tile;
-  transform: translate(216px, 216px);
+  transform: translate(#{$cell-move2}, #{$cell-move2});
 }
 
 .cell-12 {
   @extend %tile;
-  transform: translate(324px, 216px);
+  transform: translate(#{$cell-move3}, #{$cell-move2});
 }
 
 .cell-13 {
   @extend %tile;
-  transform: translate(0px, 324px);
+  transform: translate(0px, #{$cell-move3});
 }
 
 .cell-14 {
   @extend %tile;
-  transform: translate(108px, 324px);
+  transform: translate(#{$cell-move1}, #{$cell-move3});
 }
 
 .cell-15 {
   @extend %tile;
-  transform: translate(216px, 324px);
+  transform: translate(#{$cell-move2}, #{$cell-move3});
 }
 
 .cell-16 {
   @extend %tile;
-  transform: translate(324px, 324px);
+  transform: translate(#{$cell-move3}, #{$cell-move3});
 }
 
 %removal-tile {
@@ -203,75 +207,75 @@
 
 .cell-2-remove {
   @extend %removal-tile;
-  transform: translate(108px, 0px);
+  transform: translate(#{$cell-move1}, 0px);
 }
 
 .cell-3-remove {
   @extend %removal-tile;
-  transform: translate(216px, 0px);
+  transform: translate(#{$cell-move2}, 0px);
 }
 
 .cell-4-remove {
   @extend %removal-tile;
-  transform: translate(324px, 0px);
+  transform: translate(#{$cell-move3}, 0px);
 }
 
 .cell-5-remove {
   @extend %removal-tile;
-  transform: translate(0px, 108px);
+  transform: translate(0px, #{$cell-move1});
 }
 
 .cell-6-remove {
   @extend %removal-tile;
-  transform: translate(108px, 108px);
+  transform: translate(#{$cell-move1}, #{$cell-move1});
 }
 
 .cell-7-remove {
   @extend %removal-tile;
-  transform: translate(216px, 108px);
+  transform: translate(#{$cell-move2}, #{$cell-move1});
 }
 
 .cell-8-remove {
   @extend %removal-tile;
-  transform: translate(324px, 108px);
+  transform: translate(#{$cell-move3}, #{$cell-move1});
 }
 
 .cell-9-remove {
   @extend %removal-tile;
-  transform: translate(0px, 216px);
+  transform: translate(0px, #{$cell-move2});
 }
 
 .cell-10-remove {
   @extend %removal-tile;
-  transform: translate(108px, 216px);
+  transform: translate(#{$cell-move1}, #{$cell-move2});
 }
 
 .cell-11-remove {
   @extend %removal-tile;
-  transform: translate(216px, 216px);
+  transform: translate(#{$cell-move2}, #{$cell-move2});
 }
 
 .cell-12-remove {
   @extend %removal-tile;
-  transform: translate(324px, 216px);
+  transform: translate(#{$cell-move3}, #{$cell-move2});
 }
 
 .cell-13-remove {
   @extend %removal-tile;
-  transform: translate(0px, 324px);
+  transform: translate(0px, #{$cell-move3});
 }
 
 .cell-14-remove {
   @extend %removal-tile;
-  transform: translate(108px, 324px);
+  transform: translate(#{$cell-move1}, #{$cell-move3});
 }
 
 .cell-15-remove {
   @extend %removal-tile;
-  transform: translate(216px, 324px);
+  transform: translate(#{$cell-move2}, #{$cell-move3});
 }
 
 .cell-16-remove {
   @extend %removal-tile;
-  transform: translate(324px, 324px);
+  transform: translate(#{$cell-move3}, #{$cell-move3});
 }
