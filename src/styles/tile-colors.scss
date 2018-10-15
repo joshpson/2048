@@ -1,0 +1,60 @@
+%value {
+  border-radius: 5px;
+  height: 80px;
+  width: 80px;
+}
+
+.val-2 {
+  @extend %value;
+  background: #004fff;
+}
+
+.val-4 {
+  @extend %value;
+  background: #31afd4;
+}
+
+.val-8 {
+  @extend %value;
+  background: #902d41;
+}
+
+.val-16 {
+  @extend %value;
+  background: #ff007f;
+}
+
+.val-32 {
+  @extend %value;
+  background: #050505;
+}
+
+.val-64 {
+  @extend %value;
+  background: #e67f0d;
+}
+
+.val-128 {
+  @extend %value;
+  background: #ffae03;
+}
+
+.val-256 {
+  @extend %value;
+  background: #fe4e00;
+}
+
+.val-512 {
+  @extend %value;
+  background: #e9190f;
+}
+
+.val-1024 {
+  @extend %value;
+  background: #ff0f80;
+}
+
+.val-2048 {
+  @extend %value;
+  background: green;
+}

@@ -3,11 +3,6 @@ $box-color: #bfc6c5;
 %game-grid {
   padding: 8px;
   border-radius: 5px;
-  // display: grid;
-  // grid-template-colums: 108px 108px 108px 108px;
-  // // grid-template-rows: 108px 108px 108px 108px;
-  // max-width: 500px;
-  // // height: 440px;
   position: absolute;
   max-width: 500px;
   display: grid;
@@ -26,13 +21,6 @@ $box-color: #bfc6c5;
   @extend %game-grid;
   z-index: 2;
 }
-
-// .background-row {
-//   display: flex;
-//   margin: 8px 0px;
-//   width: 100%;
-//   height: 100px;
-// }
 
 .background-cell {
   border: 1px;

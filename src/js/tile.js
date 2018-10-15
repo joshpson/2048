@@ -40,7 +40,7 @@ export default class Tile {
   merge() {
     this.doubleValue();
     this.merged = true;
-    this.addValueClass("merged");
+    this.addValueClass("tile-merged");
   }
 
   doubleValue() {
@@ -60,7 +60,7 @@ export default class Tile {
     cell.appendChild(innerDiv);
     innerDiv.appendChild(number);
     cell.className = `${this.cellClass}`;
-    innerDiv.className = `val ${this.valueClass} enter`;
+    innerDiv.className = `val ${this.valueClass} tile-enter`;
     return cell;
   }
 }

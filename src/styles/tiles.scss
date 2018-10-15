@@ -1,3 +1,20 @@
+.number {
+  text-align: center;
+  color: white;
+  padding: 20px;
+  font-size: 30px;
+}
+
+.tile-enter {
+  animation-duration: 250ms;
+  animation-name: bounceFade;
+}
+
+.tile-merged {
+  animation-duration: 200ms;
+  animation-name: wobble;
+}
+
 @keyframes bounceFade {
   0% {
     transform: scale(1);
@@ -13,79 +30,6 @@
   }
 }
 
-.number {
-  text-align: center;
-  color: white;
-  padding: 20px;
-  font-size: 30px;
-}
-
-.enter {
-  animation-duration: 250ms;
-  animation-name: bounceFade;
-}
-
-%value {
-  border-radius: 5px;
-  height: 80px;
-  width: 80px;
-}
-
-.val-2 {
-  @extend %value;
-  background: #004fff;
-}
-
-.val-4 {
-  @extend %value;
-  background: #31afd4;
-}
-
-.val-8 {
-  @extend %value;
-  background: #902d41;
-}
-
-.val-16 {
-  @extend %value;
-  background: #ff007f;
-}
-
-.val-32 {
-  @extend %value;
-  background: #050505;
-}
-
-.val-64 {
-  @extend %value;
-  background: #e67f0d;
-}
-
-.val-128 {
-  @extend %value;
-  background: #ffae03;
-}
-
-.val-256 {
-  @extend %value;
-  background: #fe4e00;
-}
-
-.val-512 {
-  @extend %value;
-  background: #e9190f;
-}
-
-.val-1024 {
-  @extend %value;
-  background: #ff0f80;
-}
-
-.val-2048 {
-  @extend %value;
-  background: green;
-}
-
 @keyframes wobble {
   0% {
     transform: rotate(-1deg);
@@ -97,18 +41,13 @@
   }
 }
 
-.merged {
-  animation-duration: 200ms;
-  animation-name: wobble;
-}
-
 %tile {
   width: 80px;
   height: 80px;
   margin: 8px;
   position: absolute;
   animation-timing-function: linear;
-  transition: transform 250ms;
+  transition: transform 200ms;
 }
 
 $cell-move1: 88px;

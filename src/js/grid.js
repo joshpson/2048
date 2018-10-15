@@ -14,10 +14,10 @@ export default class Grid {
   resetTiles() {
     Object.values(this.cells).forEach(tile => {
       if (tile.new) {
-        tile.removeValueClass("enter");
+        tile.removeValueClass("tile-enter");
       }
       if (tile.merged) {
-        tile.removeValueClass("merged");
+        tile.removeValueClass("tile-merged");
         tile.merged = false;
         void tile.grabInnerDiv().offsetWidth; //Magic so the remove and add works!
       }
