@@ -1,8 +1,10 @@
 .number {
   text-align: center;
   color: white;
-  padding: 20px;
+  font-family: "Roboto", sans-serif;
+  padding-top: 20px;
   font-size: 30px;
+  margin: auto;
 }
 
 .tile-enter {
@@ -11,7 +13,7 @@
 }
 
 .tile-merged {
-  animation-duration: 200ms;
+  animation-duration: 250ms;
   animation-name: wobble;
 }
 
