@@ -13,6 +13,13 @@ function keyHandler(e, grid) {
   }
 }
 
+function newGameButton() {
+  document.querySelector(".new-game").addEventListener("click", e => {
+    e.preventDefault();
+    window.location.reload();
+  });
+}
+
 function addArrowListeners(grid) {
   document.addEventListener("keydown", e => {
     if (e.keyCode >= 37 && e.keyCode <= 40) {
@@ -33,6 +40,7 @@ function initialize() {
   grid.createTile();
   grid.createTile();
   addArrowListeners(grid);
+  newGameButton();
 }
 
 document.addEventListener("DOMContentLoaded", initialize);

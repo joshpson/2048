@@ -25,16 +25,16 @@ export default class Grid {
   }
 
   createTile() {
-    let cell = Math.floor(Math.random() * 16 + 1);
-    if (this.cells[cell]) {
-      this.createTile();
-    } else {
-      setTimeout(() => {
+    setTimeout(() => {
+      let cell = Math.floor(Math.random() * 16 + 1);
+      if (this.cells[cell]) {
+        this.createTile();
+      } else {
         let tile = new Tile({ cellClass: `cell-${cell}` });
         this.cells[cell] = tile;
         this.grab().appendChild(tile.createDiv());
-      }, 100);
-    }
+      }
+    }, 100);
   }
 
   tileCheck() {

@@ -6,20 +6,21 @@ $bg-color: #fdfdfd;
 
 body {
   background: $bg-color;
+  font-family: "Lato", sans-serif;
 }
 
 .container {
-  max-width: 800px;
+  max-width: 960px;
   display: grid;
   grid-template-columns: 50% 50%;
+  margin: auto;
 }
 
 .description {
-  padding: 10px;
-  width: 30%;
+  padding: 0 25px;
+  font-size: 14px;
 }
 
 .game {
   padding: 25px;
-  width: 70%;
 }

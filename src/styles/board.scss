@@ -30,3 +30,20 @@ $cell-color: #dadedf;
   width: 80px;
   height: 80px;
 }
+
+.new-game {
+  color: #fff !important;
+  text-transform: uppercase;
+  background: #60a3bc;
+  padding: 10px;
+  border-radius: 5px;
+  display: inline-block;
+  border: none;
+}
+
+.new-game:hover {
+  -webkit-box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.75);
+  transition: all 200 ease 0s;
+}
