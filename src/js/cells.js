@@ -97,7 +97,7 @@ export default class Cells {
     if (this.tileMoved) {
       setTimeout(() => {
         this.createTile();
-      }, 100);
+      }, 150);
       this.tileMoved = false;
     }
   }
