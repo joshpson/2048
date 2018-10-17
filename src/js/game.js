@@ -19,22 +19,22 @@ export default class Game {
       switch (e.keyCode) {
         case 37: //left
           for (let i = 1; i <= 13; i += 4) {
-            this.cells.updatePositive(i, 3, 1);
+            this.cells.moveTilesUp(i, 3, 1);
           }
           break;
         case 38: //up
           for (let i = 1; i <= 4; i += 1) {
-            this.cells.updatePositive(i, 12, 4);
+            this.cells.moveTilesUp(i, 12, 4);
           }
           break;
         case 39: //right
           for (let i = 4; i <= 16; i += 4) {
-            this.cells.updateNegative(i, 3, 1);
+            this.cells.moveTilesDown(i, 3, 1);
           }
           break;
         case 40: //down
           for (let i = 13; i <= 16; i += 1) {
-            this.cells.updateNegative(i, 12, 4);
+            this.cells.moveTilesDown(i, 12, 4);
           }
           break;
         default:
@@ -48,20 +48,23 @@ export default class Game {
   resultCheck() {
     let highScore = parseInt(document.querySelector(".high-score").innerText);
     if (this.cells.score > highScore) {
-      window.localStorage.setItem("highScore", this.cells.score);
-      document.querySelector(".high-score").innerText = this.cells.score;
+      this.setHighScore();
     }
-    let result = document.querySelector(".result");
     if (this.cells.winCheck()) {
-      result.innerText = "YOU WIN!!!";
+      document.querySelector(".result").innerText = "YOU WIN!!!";
       this.removeControlListeners();
       return;
     }
     if (this.cells.loseCheck()) {
-      result.innerText = "YOU LOSE!!!";
+      document.querySelector(".result").innerText = "YOU LOSE!!!";
       this.removeControlListeners();
       return;
     }
+  }
+
+  setHighScore() {
+    window.localStorage.setItem("highScore", this.cells.score);
+    document.querySelector(".high-score").innerText = this.cells.score;
   }
 
   removeControlListeners() {

@@ -11,6 +11,66 @@ export default class Cells {
     return document.querySelector(`.cells`);
   }
 
+  moveTilesUp(start, length, increment) {
+    //Used on left and up key strokes to traverse a row or column
+    for (let i = start + increment; i <= start + length; i += increment) {
+      for (let j = i; j > start; j -= increment) {
+        if (this.tiles[j]) {
+          this.updateCells(j, j - increment);
+        }
+      }
+    }
+  }
+
+  moveTilesDown(start, length, increment) {
+    //Used on right and down key strokesto traverse a row or column
+    for (let i = start - increment; i >= start - length; i -= increment) {
+      for (let j = i; j < start; j += increment) {
+        if (this.tiles[j]) {
+          this.updateCells(j, j + increment);
+        }
+      }
+    }
+  }
+
+  updateCells(cell, nextCell) {
+    let tile = this.tiles[cell];
+    let nextTile = this.tiles[nextCell];
+    if (!nextTile) {
+      this.moveTile(tile, nextCell);
+      delete this.tiles[cell];
+    } else if (
+      tile.value === nextTile.value &&
+      !tile.merged &&
+      !nextTile.merged
+    ) {
+      this.mergeTiles(tile, nextTile, nextCell);
+      delete this.tiles[cell];
+    }
+  }
+
+  moveTile(tile, nextCell) {
+    //Moves a tile into an empty space
+    tile.updateCell(nextCell, false);
+    this.tiles[nextCell] = tile;
+    this.tileMoved = true;
+  }
+
+  mergeTiles(tile, nextTile, nextCell) {
+    //Moves a tile into the same space as the nextTile
+    //Doubles the value of the nextTile and then updates
+    //the score
+    tile.updateCell(nextCell, true);
+    nextTile.merge();
+    this.updateScore(nextTile.value);
+    this.tileMoved = true;
+  }
+
+  updateScore(amount) {
+    this.score = this.score += amount;
+    document.querySelector(".score").innerText = `Score: ${this.score}`;
+  }
+
   resetTiles() {
     //Loop through all tiles and reset their classes and merge properties
     Object.values(this.tiles).forEach(tile => {
@@ -27,7 +87,7 @@ export default class Cells {
     } else {
       let tile = new Tile({ cellClass: `cell-${cell}` });
       this.tiles[cell] = tile;
-      this.root().appendChild(tile.createDiv());
+      this.root().appendChild(tile.returnContainer());
     }
   }
 
@@ -80,62 +140,6 @@ export default class Cells {
         return tiles[key].value === tiles[key + 1].value;
       }
     });
-  }
-
-  updatePositive(start, length, increment) {
-    for (let i = start + increment; i <= start + length; i += increment) {
-      for (let j = i; j > start; j -= increment) {
-        if (this.tiles[j]) {
-          this.updateCells(j, function() {
-            return j - increment;
-          });
-        }
-      }
-    }
-  }
-
-  updateNegative(start, length, increment) {
-    for (let i = start - increment; i >= start - length; i -= increment) {
-      for (let j = i; j < start; j += increment) {
-        if (this.tiles[j]) {
-          this.updateCells(j, function() {
-            return j + increment;
-          });
-        }
-      }
-    }
-  }
-
-  updateCells(cell, incrementFunc) {
-    let tile = this.tiles[cell];
-    let nextTile = this.tiles[incrementFunc()];
-    if (!nextTile) {
-      this.moveTile(tile, incrementFunc);
-      delete this.tiles[cell];
-    } else if (
-      tile.value === nextTile.value &&
-      !tile.merged &&
-      !nextTile.merged
-    ) {
-      nextTile.merge();
-      this.score = this.score += nextTile.value;
-      document.querySelector(".score").innerText = `Score: ${this.score}`;
-      tile
-        .grabCell()
-        .classList.replace(tile.cellClass, `cell-${incrementFunc()}-remove`);
-      tile.cellClass = `cell-${incrementFunc()}-remove`;
-      setTimeout(() => {
-        tile.removeCell();
-      }, 50);
-      this.tileMoved = true;
-      delete this.tiles[cell];
-    }
-  }
-
-  moveTile(tile, incrementFunc) {
-    tile.updateCell(incrementFunc());
-    this.tiles[incrementFunc()] = tile;
-    this.tileMoved = true;
   }
 
   returnContainer() {

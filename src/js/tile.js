@@ -6,29 +6,16 @@ export default class Tile {
     this.merged = false;
   }
 
-  reset() {
-    this.removeValueClass("tile-enter");
-    this.removeValueClass("tile-merged");
-    this.merged = false;
-    void this.grabInnerDiv().offsetWidth; //Magic so the remove and add works!
-  }
-
-  grabCell() {
+  root() {
     return document.querySelector(`.${this.cellClass}`);
   }
 
   grabInnerDiv() {
-    return this.grabCell().querySelector(".val");
+    return this.root().querySelector(".val");
   }
 
   grabNumberDiv() {
     return this.grabInnerDiv().querySelector(".number");
-  }
-
-  updateCell(cell) {
-    let newCellClass = `cell-${cell}`;
-    this.grabCell().classList.replace(this.cellClass, newCellClass);
-    this.cellClass = newCellClass;
   }
 
   addValueClass(className) {
@@ -39,8 +26,31 @@ export default class Tile {
     this.grabInnerDiv().classList.remove(className);
   }
 
-  removeCell() {
-    this.grabCell().remove();
+  remove() {
+    this.root().remove();
+  }
+
+  updateCell(cell, queRemoval) {
+    //Moves the tile by giving it a new cell class
+    //Adds -remove if the tile is qued for removal
+    let newCellClass = `cell-${cell}`;
+    if (queRemoval) {
+      newCellClass += "-remove";
+      setTimeout(() => {
+        this.remove();
+      }, 50);
+    }
+    this.root().classList.replace(this.cellClass, newCellClass);
+    this.cellClass = newCellClass;
+  }
+
+  reset() {
+    //Removes all temporary classes and offsets the width so animations
+    //don't linger
+    this.removeValueClass("tile-enter");
+    this.removeValueClass("tile-merged");
+    this.merged = false;
+    void this.grabInnerDiv().offsetWidth;
   }
 
   merge() {
@@ -50,6 +60,7 @@ export default class Tile {
   }
 
   doubleValue() {
+    //Doubles the value and updates the value class
     this.value = this.value * 2;
     let newValueClass = `val-${this.value}`;
     this.grabInnerDiv().classList.replace(this.valueClass, newValueClass);
@@ -57,7 +68,7 @@ export default class Tile {
     this.grabNumberDiv().innerText = this.value;
   }
 
-  createDiv() {
+  returnContainer() {
     let cell = document.createElement("div");
     let innerDiv = document.createElement("div");
     let number = document.createElement("div");
