@@ -1,6 +1,6 @@
 export default class Background {
   constructor(obj) {
-    this.size = obj.size;
+    // this.size = obj.size;
   }
 
   //Return one tile of the grid
@@ -14,7 +14,7 @@ export default class Background {
   returnContainer() {
     let background = document.createElement("div");
     background.className = "game-background";
-    for (let i = 0; i < this.size; i += 1) {
+    for (let i = 0; i < 16; i += 1) {
       background.appendChild(this.returnSpace());
     }
     return background;

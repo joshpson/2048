@@ -1,46 +1,21 @@
-import Background from "./background.js";
-import Grid from "./grid.js";
-import Tile from "./tile.js";
-import { throttle } from "lodash";
+import Game from "./game.js";
 
-function root() {
-  return document.querySelector(".game");
-}
+let currentGame = null;
 
-function keyHandler(e, grid) {
-  if (e.keyCode >= 37 && e.keyCode <= 40) {
-    grid.transform(e.keyCode);
-  }
-}
-
-function newGameButton() {
+function newGameButton(game) {
   document.querySelector(".new-game").addEventListener("click", e => {
     e.preventDefault();
-    window.location.reload();
+    currentGame.removeArrowListeners();
+    initialize();
   });
-}
-
-function addArrowListeners(grid) {
-  document.addEventListener("keydown", e => {
-    if (e.keyCode >= 37 && e.keyCode <= 40) {
-      e.preventDefault();
-    }
-  });
-  document.addEventListener(
-    "keydown",
-    _.throttle(e => keyHandler(e, grid), 300)
-  );
 }
 
 function initialize() {
-  let background = new Background({ size: 16 });
-  let grid = new Grid();
-  root().appendChild(background.returnContainer());
-  root().appendChild(grid.returnContainer());
-  grid.createTile();
-  grid.createTile();
-  addArrowListeners(grid);
-  newGameButton();
+  currentGame = new Game();
+  currentGame.build();
 }
 
-document.addEventListener("DOMContentLoaded", initialize);
+document.addEventListener("DOMContentLoaded", () => {
+  initialize();
+  newGameButton();
+});
