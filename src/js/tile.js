@@ -4,7 +4,13 @@ export default class Tile {
     this.cellClass = obj.cellClass;
     this.valueClass = `val-${this.value}`;
     this.merged = false;
-    this.new = true;
+  }
+
+  reset() {
+    this.removeValueClass("tile-enter");
+    this.removeValueClass("tile-merged");
+    this.merged = false;
+    void this.grabInnerDiv().offsetWidth; //Magic so the remove and add works!
   }
 
   grabCell() {

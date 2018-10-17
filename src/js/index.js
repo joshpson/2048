@@ -1,11 +1,20 @@
 import Game from "./game.js";
 
 let currentGame = null;
+let highScore = 0;
 
-function newGameButton(game) {
+function preventKeyDefault(e) {
+  if (e.keyCode >= 37 && e.keyCode <= 40) {
+    e.preventDefault();
+  }
+}
+
+function newGameButton() {
   document.querySelector(".new-game").addEventListener("click", e => {
     e.preventDefault();
-    currentGame.removeArrowListeners();
+    document.querySelector(".result").innerText = "";
+    document.querySelector(".score").innerText = "Score: 0";
+    currentGame.removeControlListeners();
     initialize();
   });
 }
@@ -17,5 +26,10 @@ function initialize() {
 
 document.addEventListener("DOMContentLoaded", () => {
   initialize();
+  document.addEventListener("keydown", preventKeyDefault);
+  if (window.localStorage.highScore) {
+    document.querySelector(".high-score").innerText =
+      window.localStorage.highScore;
+  }
   newGameButton();
 });

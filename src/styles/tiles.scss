@@ -1,20 +1,10 @@
-.number {
-  text-align: center;
-  color: white;
-  font-family: "Roboto", sans-serif;
-  padding-top: 20px;
-  font-size: 30px;
-  margin: auto;
-}
-
-.tile-enter {
-  animation-duration: 150ms;
-  animation-name: fade;
-}
-
-.tile-merged {
-  animation-duration: 250ms;
-  animation-name: wobble;
+%tile {
+  width: 80px;
+  height: 80px;
+  margin: 8px;
+  position: absolute;
+  animation-timing-function: ease-in;
+  transition: transform 220ms;
 }
 
 @keyframes fade {
@@ -37,13 +27,23 @@
   }
 }
 
-%tile {
-  width: 80px;
-  height: 80px;
-  margin: 8px;
-  position: absolute;
-  animation-timing-function: ease-in;
-  transition: transform 220ms;
+.tile-enter {
+  animation-duration: 150ms;
+  animation-name: fade;
+}
+
+.tile-merged {
+  animation-duration: 250ms;
+  animation-name: wobble;
+}
+
+.number {
+  text-align: center;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  padding-top: 20px;
+  font-size: 30px;
+  margin: auto;
 }
 
 $cell-move1: 88px;
