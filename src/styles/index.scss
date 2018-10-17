@@ -9,19 +9,23 @@ body {
   font-family: "Lato", sans-serif;
 }
 
+h1 {
+  font-size: 50px;
+}
+
 .container {
-  max-width: 960px;
+  max-width: 1200px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 20px;
+  grid-gap: 25px;
   margin: auto;
 }
 
 .description {
-  padding: 0 25px;
-  font-size: 14px;
+  padding: 10px 25px;
+  font-size: 18px;
 }
 
 .game {
-  padding: 25px;
+  padding: 40px 20px;
 }
