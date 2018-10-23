@@ -1,8 +1,4 @@
 export default class Background {
-  constructor(obj) {
-    // this.size = obj.size;
-  }
-
   //Return one tile of the grid
   returnSpace() {
     let space = document.createElement("div");

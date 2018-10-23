@@ -1,13 +1,15 @@
-$box-color: #a7afb2;
 $cell-color: #dadedf;
+$box-color: #a7afb2;
+
+$cell-size: 125px;
 
 %game-grid {
   padding: 8px;
   border-radius: 5px;
   position: absolute;
   display: grid;
-  grid-template-columns: 125px 125px 125px 125px;
-  grid-template-rows: 125px 125px 125px 125px;
+  grid-template-columns: repeat(4, $cell-size);
+  grid-template-rows: repeat(4, $cell-size);
   grid-gap: 8px;
 }
 
@@ -26,8 +28,8 @@ $cell-color: #dadedf;
   background: $cell-color;
   border: 1px;
   border-radius: 5px;
-  width: 125px;
-  height: 125px;
+  width: $cell-size;
+  height: $cell-size;
 }
 
 .new-game {

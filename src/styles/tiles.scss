@@ -1,6 +1,8 @@
+$cell-size: 125px;
+
 %tile {
-  width: 125px;
-  height: 125px;
+  width: $cell-size;
+  height: $cell-size;
   margin: 8px;
   position: absolute;
   animation-timing-function: ease-in;
@@ -46,9 +48,9 @@
   margin: auto;
 }
 
-$cell-move1: 133px;
-$cell-move2: 266px;
-$cell-move3: 399px;
+$cell-move1: $cell-size + 8;
+$cell-move2: $cell-move1 * 2;
+$cell-move3: $cell-move1 * 3;
 
 .cell-1 {
   @extend %tile;
@@ -132,7 +134,7 @@ $cell-move3: 399px;
 
 %removal-tile {
   @extend %tile;
-  z-index: -1;
+  z-index: 0;
 }
 
 .cell-1-remove {
